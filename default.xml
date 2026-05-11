@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+  <!--
+    nn project repo manifest
+    Dev trunk branch: nn/main/dev
+    Usage: repo init -u git@github.com:chalos/nn-manifest.git -b nn/main/dev
+           repo sync
+  -->
+
+  <remote name="nn"       fetch="git@github.com:chalos" />
+  <remote name="zephyr"   fetch="https://github.com/zephyrproject-rtos" />
+
+  <default remote="nn" revision="nn/main/dev" sync-j="4" />
+
+  <!-- ── Platform (root of checkout) ────────────────────────────────── -->
+  <project name="nn-platform"  path="."                revision="nn/main/dev" />
+
+  <!-- ── Modules ──────────────────────────────────────────────────────── -->
+  <project name="nn-modules"   path="modules"          revision="nn/main/dev" />
+
+  <!-- ── Apps ─────────────────────────────────────────────────────────── -->
+  <project name="nn-app-ble-ot-esp32c6"   path="apps/ble_ot_esp32c6"   revision="nn/main/dev" />
+  <project name="nn-app-ot-shell-esp32c6" path="apps/ot_shell_esp32c6" revision="nn/main/dev" />
+  <project name="nn-app-wifi-shell"       path="apps/wifi_shell"        revision="nn/main/dev" />
+  <project name="nn-app-wifi-shell-esp32c6" path="apps/wifi_shell_esp32c6" revision="nn/main/dev" />
+  <project name="nn-app-hello"            path="apps/hello_cpp"         revision="nn/main/dev" />
+  <project name="nn-app-mdns-ot-esp32c6" path="apps/mdns_ot_esp32c6"   revision="nn/main/dev" />
+
+  <!-- ── Forked third-party (patched) ─────────────────────────────────── -->
+  <project name="nn-hal-espressif"
+           path="third_party/hal_espressif"
+           revision="nn/main/dev"
+           upstream="19807014b69b2dc24edb7a1b49c915fd58083527" />
+
+  <project name="nn-openthread"
+           path="third_party/openthread"
+           revision="nn/main/dev"
+           upstream="2bc7712f57af22058770d1ef131ad3da79a0c764" />
+
+  <!-- Cross-compiler scripts + docs (abhiTronix).  The actual gcc tarballs
+       are GitHub Release assets fetched on demand by the bootstrap script;
+       this repo just gives us the build scripts + sysroot manifests. -->
+  <project name="raspberry-pi-cross-compilers"
+           path="third_party/rpi_cross_compiler"
+           revision="83f1b35338fb2171b60def3c3474ea18a5995df9"
+           upstream="83f1b35338fb2171b60def3c3474ea18a5995df9" />
+
+  <!-- ── Upstream third-party (pinned, no fork) ───────────────────────── -->
+  <project name="nn-zephyr"
+           path="third_party/zephyr"
+           remote="nn"
+           revision="6ef06b0b5f03095d49f09d1bbfa4462a194b412b"
+           upstream="4d0852b0051c9b13b59f34bceb0c38148ad12eb1" />
+
+  <project name="mbedtls"
+           path="third_party/mbedtls"
+           remote="zephyr"
+           revision="c5b06d89c9c498d8fc8659ce31f7e53137b6270f" />
+
+  <project name="mcuboot"
+           path="third_party/mcuboot"
+           remote="zephyr"
+           revision="9ac72969f281491d677e669d053281fc2d538ed4" />
+
+  <project name="hal_nordic"
+           path="third_party/hal_nordic"
+           remote="zephyr"
+           revision="a83db66acbeca0bfef157a0c3482c07ddbb82555" />
+
+  <project name="cmsis"
+           path="third_party/cmsis"
+           remote="zephyr"
+           revision="512cc7e895e8491696b61f7ba8066b4a182569b8" />
+
+  <project name="cmsis_6"
+           path="third_party/cmsis_6"
+           remote="zephyr"
+           revision="30a859f44ef8ab4dc8f84b03ed586fd16ccf9d74" />
+
+  <project name="hostap"
+           path="third_party/hostap"
+           remote="zephyr"
+           revision="1a2fbb7910f23822a785294eab9f4922c6119711" />
+
+  <project name="nrf_wifi"
+           path="third_party/nrf_wifi"
+           remote="zephyr"
+           revision="29afb11a512787bc68e2afd58c9dfde4bb4d5dc4" />
+
+</manifest>
